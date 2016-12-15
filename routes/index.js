@@ -4,12 +4,28 @@ var knex = require('../db/knex')
 
 /* GET home page. */
 router.get('/:id', function(req, res, next) {
-  return knex('user')
-  .where('id', req.params.id)
-  .first()
-  .then(user =>{
-    res.json(user);
-  })
+  if(!isNaN(req.params.id)){
+    return knex('user')
+    .where('id', req.params.id)
+    .first()
+    .then(user =>{
+      if(user){
+        res.json(user);
+      } else {
+        res.status(404)
+        res.json({
+          message: "You done fucked it."
+        })
+      }
+
+    })
+  } else {
+    res.status(500)
+    res.json({
+      message: "Foff"
+    })
+  }
+
 });
 
 module.exports = router;
