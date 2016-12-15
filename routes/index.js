@@ -10,6 +10,7 @@ router.get('/:id', function(req, res, next) {
     .first()
     .then(user =>{
       if(user){
+        delete user.password;
         res.json(user);
       } else {
         res.status(404)
