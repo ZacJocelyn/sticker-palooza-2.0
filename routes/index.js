@@ -30,10 +30,25 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.get('/:id/stickers', function (req, res) {
-  knex('sticker').where('user_id', req.params.id).then(sticker =>{
-    res.json(sticker)
+  if (!isNaN(req.params.id)) {
+    knex('sticker').where('user_id', req.params.id).then(sticker =>{
+      if (sticker.length > 0) {
+        res.json(sticker)
+      } else {
+        res.status(404)
+        res.json({
+          message: 'No stickers here!'
+        })
+      }
+
+    })
+  } else {
+    res.status(500);
+    res.json({
+      message: 'Foff!'
+    })
   }
-  )
+
 })
 
 
