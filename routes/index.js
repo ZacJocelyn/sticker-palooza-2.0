@@ -29,4 +29,15 @@ router.get('/:id', function(req, res, next) {
 
 });
 
+router.get('/:id/stickers', function (req, res) {
+  knex('sticker').where('user_id', req.params.id).then(sticker =>{
+    res.json(sticker)
+  }
+  )
+})
+
+
+
+
+
 module.exports = router;
