@@ -3,7 +3,7 @@ exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex.raw('delete from sticker; alter sequence sticker_id_seq restart with 1')
     .then(function () {
-      const users = [{
+      const stickers = [{
         image_url: 'https://d3spquiph2sexc.cloudfront.net/assets/clear-5f3c4f7aa12b49b0671688eab01581b3.gif',
         name: 'Octocrest',
         user_id: '1'
@@ -20,5 +20,6 @@ exports.seed = function(knex, Promise) {
         name: 'Mildly creepy bunny',
         user_id: '2'
       }]
+      return knex('sticker').insert(stickers);
     });
 };

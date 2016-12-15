@@ -12,5 +12,6 @@ exports.seed = function(knex, Promise) {
         email: 'thegrumpygoose@icloud.com',
         password: 'heybro'
       }]
+      return knex('user').insert(users);
     });
 };
