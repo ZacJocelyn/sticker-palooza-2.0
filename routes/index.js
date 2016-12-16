@@ -3,7 +3,7 @@ var router = express.Router();
 var knex = require('../db/knex')
 
 /* GET home page. */
-router.get('/:id', (req, res, next) => {
+router.get('/user/:id', (req, res, next) => {
   if(!isNaN(req.params.id)){
     return knex('user')
     .where('id', req.params.id)
@@ -29,7 +29,7 @@ router.get('/:id', (req, res, next) => {
 
 });
 
-router.get('/:id/stickers', (req, res) => {
+router.get('/user/:id/sticker', (req, res) => {
   if (!isNaN(req.params.id)) {
     knex('sticker').where('user_id', req.params.id).then(sticker =>{
       if (sticker.length > 0) {
