@@ -51,7 +51,13 @@ router.get('/user/:id/sticker', (req, res) => {
 
 })
 
-
+router.post('/user/:user_id/sticker', (req, res) => {
+  knex('sticker').where('id', req.params.id).insert({
+    image_url: req.body.image_url,
+    name: req.body.name,
+    user_id: req.body.user_id
+  })
+})
 
 
 
